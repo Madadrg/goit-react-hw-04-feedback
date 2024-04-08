@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './Feedback.module.css';
 
 // Section component
 const Section = ({ title, children }) => {
@@ -8,6 +9,11 @@ const Section = ({ title, children }) => {
       {children}
     </div>
   );
+};
+
+// Notification component
+const Notification = ({ message }) => {
+  return <p>{message}</p>;
 };
 
 // Statistics component
@@ -62,15 +68,21 @@ function App() {
           onLeaveFeedback={handleFeedback}
         />
       </Section>
-      <Section title="Statistics">
-        <Statistics
-          good={feedback.good}
-          neutral={feedback.neutral}
-          bad={feedback.bad}
-          total={total}
-          positivePercentage={positivePercentage}
-        />
-      </Section>
+      {total > 0 ? (
+        <Section title="Statistics">
+          <Statistics
+            good={feedback.good}
+            neutral={feedback.neutral}
+            bad={feedback.bad}
+            total={total}
+            positivePercentage={positivePercentage}
+          />
+        </Section>
+      ) : (
+        <Section title="Statistics">
+          <Notification message="There is no feedback" />
+        </Section>
+      )}
     </div>
   );
 }
