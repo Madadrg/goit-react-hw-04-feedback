@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from './Feedback.module.css';
 
 // Section component
 const Section = ({ title, children }) => {
@@ -11,7 +10,6 @@ const Section = ({ title, children }) => {
   );
 };
 
-// Notification component
 const Notification = ({ message }) => {
   return <p>{message}</p>;
 };
@@ -62,14 +60,14 @@ function App() {
 
   return (
     <div className="container">
-      <Section title="Feedback">
+      <Section>
         <FeedbackOptions
           options={['good', 'neutral', 'bad']}
           onLeaveFeedback={handleFeedback}
         />
       </Section>
       {total > 0 ? (
-        <Section title="Statistics">
+        <Section>
           <Statistics
             good={feedback.good}
             neutral={feedback.neutral}
